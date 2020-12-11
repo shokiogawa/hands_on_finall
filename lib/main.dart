@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    //news_controllerファイルにあるproviderを使うために、Widgetの最上部辺りに、MultiProviderを置き、StateNotifierProviderをセットする。
     return MultiProvider(
       providers: [
         StateNotifierProvider<NewsController, NewsState>(

@@ -4,23 +4,51 @@ import 'package:hands_on_flutter/presentation/controller/news_controller.dart';
 import 'package:hands_on_flutter/usecase/query/read_model/article_read_model.dart';
 import 'package:provider/provider.dart';
 
-class MainPage extends StatefulWidget {
-  @override
-  _MainPageState createState() => _MainPageState();
-}
+// class MainPage extends StatefulWidget {
+//   @override
+//   _MainPageState createState() => _MainPageState();
+// }
+//
+// class _MainPageState extends State<MainPage> {
+//   Future<void> _fetch;
+//
+//   //initstateでwidget生成前の非同期処理を設定(ここでは、_fetch = Provider.of<NewsController>(context, listen: false).getNews()がwidget生成前に発火する非同期処理)
+//   @override
+//   void initState() {
+//     super.initState();
+//     _fetch = Provider.of<NewsController>(context, listen: false).getNews();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         centerTitle: true,
+//         title: Text("Demo"),
+//       ),
+//       //非同期処理の処理が完了した後にwidgetを生成するwidget
+//       body: FutureBuilder<void>(
+//         //initStateで設定した非同期処理をfuture: に設定
+//         future: _fetch,
+//         builder: (context, snapshot) {
+//           if (snapshot.connectionState != ConnectionState.done) {
+//             return Center(child: CircularProgressIndicator());
+//           }
+//           if (snapshot.hasError) {
+//             print("エラーが出たよ");
+//           }
+//           return HeadNewsListPage();
+//         },
+//       ),
+//     );
+//   }
+// }
 
-class _MainPageState extends State<MainPage> {
-  Future<void> _fetch;
-
-  //initstateでwidget生成前の非同期処理を設定(ここでは、_fetch = Provider.of<NewsController>(context, listen: false).getNews()がwidget生成前に発火する非同期処理)
-  @override
-  void initState() {
-    super.initState();
-    _fetch = Provider.of<NewsController>(context, listen: false).getNews();
-  }
-
+class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _fetch =
+        Provider.of<NewsController>(context, listen: false).getNews();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
